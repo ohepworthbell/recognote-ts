@@ -31,16 +31,31 @@ export default class NoteWheel {
    *  Init wheel
    * 
    */
-  createWheel(): void {
+  private createWheel() : void {
     this.createGameArea();
     this.addGameLineGradient();
+    this.animate();
+  }
+
+  /**
+   *  Animate circle
+   * 
+   */
+  private animate() : void {
+    let draw: any;
+
+    (draw = () => {
+      this.drawLine();
+
+      window.requestAnimationFrame(draw);
+    })();
   }
 
   /**
    *  Draw game area
    * 
    */
-  createGameArea(): void {
+  private createGameArea() : void {
     let {radius, canvasSize} = this.settings;
 
     // Set button size
@@ -74,7 +89,7 @@ export default class NoteWheel {
    *  Add gradient to canvas lines
    * 
    */
-  addGameLineGradient() {
+  private addGameLineGradient() : void {
     let {canvas} = this.dom;
     let ctx = canvas.getContext('2d');
 
@@ -95,7 +110,7 @@ export default class NoteWheel {
    *  Draw lines on canvas
    * 
    */
-  drawLine(){
+  private drawLine() : void {
     let {canvas} = this.dom;
     let ctx = canvas.getContext('2d');
 

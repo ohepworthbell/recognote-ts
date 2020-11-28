@@ -32,7 +32,7 @@ export default class SoundNode {
     this.angle = angle;
     this.radius = radius;
     this.midPoint = midPoint;
-    this.maxOffset, this.offset = maxOffset;
+    this.maxOffset = this.offset = maxOffset;
 
     // Starting params for easing
     this.ease = 0;
