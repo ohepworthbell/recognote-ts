@@ -13,7 +13,8 @@
     "paths": {
       "interfaces": ["game/interfaces/index"],
       "settings": ["game/settings/index"],
-      "util": ["game/util"]
+      "elements": ["game/util/element"],
+      "easing": ["game/util/easing"]
     }
   }
 }

@@ -20,3 +20,12 @@ export type Settings = {
   hardMode: boolean,
   instrument: string
 }
+
+/**
+ *  Coordinates
+ * 
+ */
+export type Coordinates = {
+  x: number,
+  y: number
+}

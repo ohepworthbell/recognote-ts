@@ -17,6 +17,27 @@ export default class Game extends NoteWheel {
     this.notes = notes;
     
     // Test log
-    console.log('this:', this);
+    this.animate();
+  }
+
+  /**
+   *  Toggle animation for line nodes
+   * 
+   *  @param {Boolean} toggle 
+   */
+  toggleSoundAnimation(toggle: boolean = false) : void {
+    for (let node of this.nodes) toggle ? node.start() : node.end();
+  }
+
+  /**
+   *  Animate circle
+   * 
+   */
+  animate() {
+    (function draw() {
+      console.log('Animating!');
+
+      window.requestAnimationFrame(draw);
+    })();
   }
 }

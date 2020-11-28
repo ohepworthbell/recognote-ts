@@ -4,7 +4,7 @@
   "description": "A small, self-contained, HTML-JS web app for practicing note recognotion",
   "main": "src/index.ts",
   "scripts": {
-    "serve": "webpack-dev-server --client-log-level warning",
+    "serve": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Oliver Hepworth-Bell",

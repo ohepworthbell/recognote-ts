@@ -1,6 +1,7 @@
-import {Element, Img} from 'util/element';
+import {Element, Img} from 'elements';
 import {Settings, Dom} from 'interfaces';
 import defaults from 'settings';
+import fetchGroupedSoundNodes from './nodes/group';
 
 /**
  *  Create wheel for interactions
@@ -13,10 +14,14 @@ export default class NoteWheel {
   wrapper: HTMLElement;
   settings: Settings;
   dom: Dom;
+  nodes: any[];
 
   constructor(wrapper: string, settings?: object) {
     this.wrapper = document.getElementById(wrapper) as HTMLElement;
     this.settings = defaults(settings);
+
+    // Create nodes
+    this.nodes = fetchGroupedSoundNodes(this.settings);
 
     // Init
     this.createWheel();

@@ -22,15 +22,13 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    plugins: [new TsconfigPathsPlugin()]
-  },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'main.js'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
