@@ -34,8 +34,10 @@ export default class Game extends NoteWheel {
    * 
    */
   animate() {
-    (function draw() {
-      console.log('Animating!');
+    let draw: any;
+
+    (draw = () => {
+      this.drawLine();
 
       window.requestAnimationFrame(draw);
     })();

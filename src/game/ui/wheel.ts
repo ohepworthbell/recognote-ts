@@ -1,5 +1,5 @@
 import {Element, Img} from 'elements';
-import {Settings, Dom} from 'interfaces';
+import {Settings, Dom, Coordinates} from 'interfaces';
 import defaults from 'settings';
 import fetchGroupedSoundNodes from './nodes/group';
 
@@ -89,5 +89,54 @@ export default class NoteWheel {
     ctx.strokeStyle = gradient;
     ctx.lineWidth = this.settings.lineWidth;
     ctx.lineJoin = 'round';
+  }
+
+  /**
+   *  Draw lines on canvas
+   * 
+   */
+  drawLine(){
+    let {canvas} = this.dom;
+    let ctx = canvas.getContext('2d');
+
+    // Fetch nodes
+    let nodes = this.nodes;
+    let nodeLength = nodes.length - 1;
+  
+    // Clear context
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    // Move to initial position
+    let startCoords = nodes[0].coords;
+    let endCoords = nodes[nodeLength].coords;
+  
+    // Get offset for coords, to create smooth line at end loop
+    let offset: Coordinates = {
+      x: (startCoords.x + endCoords.x) / 2,
+      y: (startCoords.y + endCoords.y) / 2
+    };
+  
+    // Start line
+    ctx.beginPath();
+    ctx.moveTo(offset.x, offset.y);
+  
+    // Loop through points of circle and draw curved lines
+    for (let i = 0; i < nodeLength; i++) {
+      let current = nodes[i].coords;
+      let next = nodes[i + 1].coords;
+      let midpoint = {
+        x: (current.x + next.x) / 2,
+        y: (current.y + next.y) / 2
+      };
+
+      ctx.quadraticCurveTo(current.x, current.y, midpoint.x, midpoint.y);
+    }
+  
+    // Loop back to start
+    ctx.quadraticCurveTo(endCoords.x, endCoords.y, offset.x, offset.y);
+  
+    // Stroke path
+    ctx.closePath();
+    ctx.stroke();
   }
 }
