@@ -1,1 +1,5 @@
-console.log('Hello world!')
+import Game from './game/game';
+
+new Game(
+  'app'
+);
