@@ -1,6 +1,6 @@
-import defaults from '../settings/index';
-import {Element, Img} from '../util/element';
-import {Settings, Dom} from '../interfaces/index';
+import {Element, Img} from 'util/element';
+import {Settings, Dom} from 'interfaces';
+import defaults from 'settings';
 
 /**
  *  Create wheel for interactions
@@ -28,6 +28,7 @@ export default class NoteWheel {
    */
   createWheel(): void {
     this.createGameArea();
+    this.addGameLineGradient();
   }
 
   /**
@@ -62,5 +63,26 @@ export default class NoteWheel {
     this.dom = {
       canvas, button
     };
+  }
+
+  /**
+   *  Add gradient to canvas lines
+   * 
+   */
+  addGameLineGradient() {
+    let {canvas} = this.dom;
+    let ctx = canvas.getContext('2d');
+
+    // Create gradient
+    let gradient = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
+
+    // Set gradient colours
+    gradient.addColorStop(0.3, '#3762d2');
+    gradient.addColorStop(0.6, '#24c597');
+
+    // Store line settings onto canvas
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = this.settings.lineWidth;
+    ctx.lineJoin = 'round';
   }
 }

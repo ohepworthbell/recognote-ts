@@ -1,5 +1,6 @@
 const path = require('path');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: ['./src/index.ts', './src/assets/scss/style.scss'],
@@ -20,6 +21,9 @@ module.exports = {
         use: ['file-loader']
       }
     ]
+  },
+  resolve: {
+    plugins: [new TsconfigPathsPlugin()]
   },
   output: {
     path: path.resolve(__dirname, 'build'),

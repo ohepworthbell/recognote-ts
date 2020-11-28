@@ -1,4 +1,4 @@
-import {Settings} from '../interfaces/index';
+import {Settings} from 'interfaces';
 
 /**
  *  Default settings for new game

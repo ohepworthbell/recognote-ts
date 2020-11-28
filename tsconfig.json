@@ -8,6 +8,12 @@
     "downlevelIteration": true,
     "sourceMap": true,
     "outDir": "./dist/",
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": "./src",
+    "paths": {
+      "interfaces": ["game/interfaces/index"],
+      "settings": ["game/settings/index"],
+      "util": ["game/util"]
+    }
   }
 }
