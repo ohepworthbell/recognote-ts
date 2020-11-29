@@ -26,8 +26,8 @@ export default class ScoreKeeper {
    */
   constructDom(wrapper: HTMLElement) {
     // Create score boxes
-    let current = new (ScoreBox as any)(this.score, 'left');
-    let top = new (ScoreBox as any)(this.topscore, 'right');
+    let current = new (ScoreBox as any)(this.score, 'left', 'Current score');
+    let top = new (ScoreBox as any)(this.topscore, 'right', 'Top streak');
 
     // Append elements to wrapper
     wrapper.append(current, top);

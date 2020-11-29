@@ -17,7 +17,7 @@ export function Element(this: any, elementType: string, attributes?: object, con
   }
 
   // Append content, if exists
-  if(content) this.element.append(content);
+  if(content) this.element.append(...content);
 
   // Return element
   return this.element;

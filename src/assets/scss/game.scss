@@ -92,14 +92,51 @@
 
   &__score {
     position: fixed;
-    bottom: 1em;
+    top: 1em;
+    text-align: center;
+    pointer-events: none;
+    color: var(--text-lighter);
+    text-transform: uppercase;
+    font-size: 0.55em;
+    line-height: 1.6em;
+    letter-spacing: 0.15em;
+
+    @media (min-width: 700px) {
+      top: auto;
+      bottom: 2em;
+      font-size: 0.6em;
+    }
 
     &--left {
-      left: 1em;
+      text-align: left;
+      left: 1.2em;
+
+      @media (min-width: 700px) {
+        left: 2.2em;
+      }
     }
 
     &--right {
-      right: 1em;
+      text-align: right;
+      right: 1.2em;
+
+      @media (min-width: 700px) {
+        right: 2.2em;
+      }
+    }
+
+    &__number {
+      display: block;
+      font-weight: 200;
+      font-size: 1.6rem;
+      color: var(--text);
+      letter-spacing: 0;
+      line-height: 1.4em;
+    }
+
+    &--streak &__number {
+      color: var(--gold);
+      animation: streakGlow 3s alternate infinite linear;
     }
   }
 }
@@ -107,5 +144,19 @@
 @keyframes rotateCanvas {
   to {
     transform: rotate(360deg)
+  }
+}
+
+@keyframes streakGlow {
+  from {
+    text-shadow: 
+      0 0 3px var(--gold),
+      0 0 10px var(--gold);
+  }
+  to {
+    text-shadow:
+      0 0 8px var(--gold),
+      0 0 15px var(--gold),
+      0 0 25px var(--gold);
   }
 }
