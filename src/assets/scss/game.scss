@@ -15,6 +15,39 @@
   &__answer {
     position: absolute;
     transform: translate(-50%, -50%);
+    font-weight: 100;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--background-lighter);
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+
+    &[disabled] {
+      pointer-events: none;
+      color: var(--text-lighter);
+    }
+
+    @media (min-width: 700px) {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background-color: var(--background-lighter);
+    }
+
+    &:focus {
+      background-color: var(--colour);
+      color: var(--background);
+      outline: none;
+    }
   }
 
   &__play-button {
@@ -35,6 +68,7 @@
 
     &:focus {
       border-color: var(--colour);
+      outline: none;
     }
 
     &__icon {
@@ -42,6 +76,17 @@
       width: calc(1.2em + 1.5vw);
       height: calc(1.2em + 1.5vw);
       pointer-events: none;
+      transition: opacity 0.15s;
+    }
+
+    &[disabled] {
+      pointer-events: none;
+      transition: none;
+    }
+
+    &[disabled] &__icon {
+      transition: none;
+      opacity: 0.15;
     }
   }
 
