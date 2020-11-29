@@ -1,0 +1,31 @@
+// App
+.app {
+  width: 94%;
+  max-width: 40em;
+  text-align: center;
+  margin: 0 auto;
+  padding: Max(3em, 10vh) 0;
+}
+
+// Header
+.header {
+  &__logo {
+    display: block;
+    width: 7em;
+    height: auto;
+    margin: 0 auto 0.7em;
+  }
+
+  &__text {
+    font-weight: 100;
+    font-size: 1.8em;
+    margin: 0;
+  }
+}
+
+.footer {
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  font-size: 0.89em;
+  color: var(--text-lighten);
+}

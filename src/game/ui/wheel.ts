@@ -15,6 +15,7 @@ export default class NoteWheel {
   settings: Settings;
   dom: Dom;
   nodes: any[];
+  ctx: any;
 
   constructor(wrapper: string, settings?: object) {
     this.wrapper = document.getElementById(wrapper) as HTMLElement;
@@ -56,24 +57,23 @@ export default class NoteWheel {
    * 
    */
   private createGameArea() : void {
-    let {radius, canvasSize} = this.settings;
-
-    // Set button size
-    let buttonSize: number = 100 * 2 * (radius / canvasSize);
+    let {canvasSize} = this.settings;
 
     // Create canvas
     let canvas = new (Element as any)('canvas', {
       width: canvasSize,
-      height: canvasSize
+      height: canvasSize,
+      class: 'game__canvas'
     });
+
+    // Save canvas context
+    this.ctx = canvas.getContext('2d');
 
     // Create button for playing sounds
     let button = new (Element as any)('button', {
       type: 'button',
       title: 'Play sound',
-      class: 'play-button button',
-      width: buttonSize + '%',
-      height: buttonSize + '%'
+      class: 'game__play-button button',
     }, new (Img as any)('/img/volume.svg', 30, 30, {title: 'Volume icon'}));
 
     // Append elements to game area
@@ -91,7 +91,7 @@ export default class NoteWheel {
    */
   private addGameLineGradient() : void {
     let {canvas} = this.dom;
-    let ctx = canvas.getContext('2d');
+    let {ctx} = this;
 
     // Create gradient
     let gradient = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
@@ -112,7 +112,7 @@ export default class NoteWheel {
    */
   private drawLine() : void {
     let {canvas} = this.dom;
-    let ctx = canvas.getContext('2d');
+    let {ctx} = this;
 
     // Fetch nodes
     let nodes = this.nodes;

@@ -1,4 +1,5 @@
 import NoteWheel from './ui/wheel';
+import Answer from './ui/answers/index';
 import Sound from 'sounds';
 
 /**
@@ -12,6 +13,7 @@ export default class Game extends NoteWheel {
   notes: object;
   answers: any[];
   scoreboard: any;
+  sound: Sound;
 
   constructor(wrapper: string, notes?: object, settings?: object) {
     super(wrapper, settings);
@@ -23,33 +25,118 @@ export default class Game extends NoteWheel {
     this.answers = [];
 
     // Create scoreboard
-    this.scoreboard = null;
+    this.scoreboard = {};
 
     // Establish new round
-    this.addAnswerButtons();
-    this.addHandlers(true);
+    this.newRound(true);
   }
 
   /**
-   *  Add answer buttons
+   *  Create a new round for the game
    * 
+   *  @param {Boolean} firstLoad 
    */
-  private addAnswerButtons() : void {}
+  private newRound(firstLoad:boolean = false) : void {
+    this.clearPreviousRounds();
+    this.setCorrectAnswer();
+    this.createNewSound();
+    this.addAnswerButtons();
+    
+    // If not firstLoad, add sound button handler
+    if(firstLoad) this.addSoundButtonListeners();
+  }
 
   /**
-   *  Add event handlers
+   *  Clear existing event handlers, remove old buttons
    * 
-   *  @param {Boolean} initial 
    */
-  private addHandlers(initial:boolean = false) : void {
-    let {button} = this.dom;
-    let {hardMode} = this.settings;
-    let correctAnswer = 'b';
+  private clearPreviousRounds() : void {
+    if (!this.answers.length) return;
 
-    // Set octave for note (easy mode is only 1 octave, hard mode is 3)
-    let octave: number = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
+    // Remove all existing buttons
+    this.answers.forEach(button => button.remove());
+
+    // Set answers to empty array
+    this.answers = [];
+  }
+
+  /**
+   *  Set correct answer for round
+   * 
+   */
+  private setCorrectAnswer() : void {
+    let answers: string[] = Object.keys(this.notes);
     
-    // Add click handler for central button
+    // Get random 'correct' answer
+    this.scoreboard.answer = answers[Math.floor(Math.random() * answers.length)];
+  }
+
+  /**
+   *  Create new sound
+   * 
+   */
+  private createNewSound() : void {
+    let {hardMode} = this.settings;
+    let {answer} = this.scoreboard;
+
+    // Find correct octave (hard mode spans 3rd-6th octaves, easy mode is just 4th octave)
+    let octave = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
+
+    // Create new sound
+    this.sound = new Sound(this.notes, answer, octave);
+  }
+
+  /**
+   *  Add correct answers to game
+   * 
+   */
+  private addAnswerButtons() : void {
+    let answers: string[] = Object.keys(this.notes);
+
+    // Get size of segments
+    const divisions: number = Math.PI * 2 / answers.length;
+    const midpoint: number = this.dom.canvas.clientWidth / 2;
+    const radius: number = midpoint * 0.75;
+
+    // Create new answers from above array
+    answers.forEach((value: string, index: number) => {
+      // Get angle (offset by 1 rad)
+      let angle: number = divisions * index - Math.PI / 2;
+
+      // Create new answer
+      let answer: HTMLElement = new (Answer as any)(value, angle, radius, midpoint);
+
+      // Add new answer to array
+      this.answers.push(answer);
+
+      // Append answer to wrapper
+      this.wrapper.append(answer);
+
+      // Add event listener to answer
+      answer.addEventListener('click', () => {
+        // Add vibtration for haptic feedback
+        if (window.navigator.vibrate) window.navigator.vibrate(50);
+
+        // Disable all answer buttons, to prevent multiple answers being submitted
+        for (let button of this.answers) button.disabled = true;
+
+        // Check current answer
+        // this.scoreboard.check(button.answer);
+
+        // Refresh buttons after 500ms (to allow for 'click' animations to complete)
+        setTimeout(() => this.newRound(), 1500);
+      });
+    });
+  }
+
+  /**
+   *  Add sound button event listener
+   * 
+   */
+  private addSoundButtonListeners() : void {
+    let {button} = this.dom;
+    
+    // Add click handler for 'play' button
     button.addEventListener('click', (e: Event) : void => {
       e.preventDefault();
 
@@ -68,8 +155,8 @@ export default class Game extends NoteWheel {
         button.disabled = false;
       }, 2000);
 
-      // Get frequency of note
-      new Sound(this.notes, correctAnswer, octave).play();
+      // Play new sound
+      this.sound.play();
     });
   }
 
@@ -78,7 +165,7 @@ export default class Game extends NoteWheel {
    * 
    *  @param {Boolean} toggle 
    */
-  toggleSoundAnimation(toggle: boolean = false) : void {
+  private toggleSoundAnimation(toggle: boolean = false) : void {
     for (let node of this.nodes) toggle ? node.start() : node.end();
   }
 }
