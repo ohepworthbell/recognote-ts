@@ -1,0 +1,10 @@
+{
+  "nodes": 100,
+  "canvasSize": 700,
+  "ringRadius": 190,
+  "noteRadius": 270,
+  "lineWidth": 10,
+  "maxOffset": 100,
+  "hardMode": false,
+  "instrument": "midi"
+}

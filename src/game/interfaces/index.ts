@@ -13,10 +13,11 @@ export type Dom = {
  */
 export type Settings = {
   nodes: number,
-  radius: number,
+  canvasSize: number,
+  ringRadius: number, 
+  noteRadius: number,
   maxOffset: number,
   lineWidth: number,
-  canvasSize: number,
   hardMode: boolean,
   instrument: string
 }

@@ -6,10 +6,11 @@ import {Settings} from 'interfaces';
  */
 let settings: Settings = {
   nodes: 30,
-  radius: 100,
+  canvasSize: 700,
+  ringRadius: 190,
+  noteRadius: 220,
   maxOffset: 40,
   lineWidth: 12,
-  canvasSize: 800,
   hardMode: false,
   instrument: 'midi'
 }

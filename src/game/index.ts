@@ -94,10 +94,15 @@ export default class Game extends NoteWheel {
   private addAnswerButtons() : void {
     let answers: string[] = Object.keys(this.notes);
 
+    // Get sizes from settings
+    let {canvasSize, noteRadius} = this.settings;
+    let canvasClientWidth = this.dom.canvas.clientWidth;
+
     // Get size of segments
     const divisions: number = Math.PI * 2 / answers.length;
-    const midpoint: number = this.dom.canvas.clientWidth / 2;
-    const radius: number = midpoint * 0.75;
+    const midpoint: number = canvasClientWidth / 2;
+    const scale = canvasClientWidth / canvasSize;
+    const radius: number = noteRadius * scale;
 
     // Create new answers from above array
     answers.forEach((value: string, index: number) => {

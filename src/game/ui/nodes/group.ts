@@ -14,7 +14,7 @@ export default function fetchGroupedSoundNodes(settings: Settings) : SoundNode[]
 
   // Get angle between segments
   let segments: number = Math.PI * 2 / settings.nodes;
-  let radius: number = settings.radius;
+  let radius: number = settings.ringRadius;
   let midPoint: number = settings.canvasSize / 2;
   let maxOffset: number = settings.maxOffset;
 
