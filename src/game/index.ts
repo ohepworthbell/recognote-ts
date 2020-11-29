@@ -123,14 +123,11 @@ export default class Game extends NoteWheel {
         // Add vibtration for haptic feedback
         if (window.navigator.vibrate) window.navigator.vibrate(50);
 
-        // Disable all answer buttons, to prevent multiple answers being submitted
-        for (let button of this.answers) button.disabled = true;
-
         // Check current answer
         this.scoreboard.check(value);
 
         // Refresh buttons after 500ms (to allow for 'click' animations to complete)
-        setTimeout(() => this.newRound(), 1500);
+        this.newRound();
       });
     });
   }
