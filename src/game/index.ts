@@ -101,7 +101,7 @@ export default class Game extends NoteWheel {
     // Get size of segments
     const divisions: number = Math.PI * 2 / answers.length;
     const midpoint: number = canvasClientWidth / 2;
-    const scale = canvasClientWidth / canvasSize;
+    const scale:number = canvasClientWidth / canvasSize;
     const radius: number = noteRadius * scale;
 
     // Create new answers from above array

@@ -14,7 +14,7 @@
     "allowJs": true,
     "baseUrl": "./src",
     "paths": {
-      "interfaces": ["game/interfaces/index"],
+      "interfaces": ["interfaces/index"],
       "settings": ["game/settings/index"],
       "elements": ["game/util/element"],
       "easing": ["game/util/easing"],
