@@ -70,12 +70,18 @@ export default class NoteWheel {
     // Save canvas context
     this.ctx = canvas.getContext('2d');
 
+    // Create play button icon
+    let image = new (Img as any)('/img/volume.svg', 30, 30, {
+      title: 'Volume icon', 
+      class: 'game__play-button__icon'
+    });
+
     // Create button for playing sounds
     let button = new (Element as any)('button', {
       type: 'button',
       title: 'Play sound',
       class: 'game__play-button button',
-    }, new (Img as any)('/img/volume.svg', 30, 30, {title: 'Volume icon'}));
+    }, image);
 
     // Append elements to game area
     this.wrapper.append(canvas, button);

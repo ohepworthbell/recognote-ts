@@ -3,6 +3,8 @@
 .game {
   position: relative;
   margin: 3em auto;
+  width: 90%;
+  max-width: 35em;
 
   &__canvas {
     display: block;
@@ -20,6 +22,40 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: transparent;
+    border: 2px solid var(--background-lighter);
+    padding: calc(1em + 1vw);
+    border-radius: 100%;
+    cursor: pointer;
+    transition: border-color 0.15s;
+
+    &:hover {
+      border-color: var(--text-lighter);
+    }
+
+    &:focus {
+      border-color: var(--colour);
+    }
+
+    &__icon {
+      display: block;
+      width: calc(1.2em + 1.5vw);
+      height: calc(1.2em + 1.5vw);
+      pointer-events: none;
+    }
+  }
+
+  &__score {
+    position: fixed;
+    bottom: 1em;
+
+    &--left {
+      left: 1em;
+    }
+
+    &--right {
+      right: 1em;
+    }
   }
 }
 
