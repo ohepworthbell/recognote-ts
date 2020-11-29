@@ -1,5 +1,5 @@
 import {notes, settings} from './assets/scripts/game-settings'
-import Game from './game/game';
+import Game from './game/index';
 
 /**
  *  Create new instance of app
