@@ -12,7 +12,7 @@ import Sound from 'sounds';
  */
 export default class Game extends NoteWheel {
   notes: object;
-  answers: any[];
+  answers: HTMLElement[];
   scoreboard: ScoreKeeper;
   sound: Sound;
 
@@ -81,7 +81,7 @@ export default class Game extends NoteWheel {
     let {correct} = this.scoreboard;
 
     // Find correct octave (hard mode spans 3rd-6th octaves, easy mode is just 4th octave)
-    let octave = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
+    let octave:number = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
 
     // Create new sound
     this.sound = new Sound(this.notes, correct, octave);
@@ -96,7 +96,7 @@ export default class Game extends NoteWheel {
 
     // Get sizes from settings
     let {canvasSize, noteRadius} = this.settings;
-    let canvasClientWidth = this.dom.canvas.clientWidth;
+    let canvasClientWidth: number = this.dom.canvas.clientWidth;
 
     // Get size of segments
     const divisions: number = Math.PI * 2 / answers.length;
