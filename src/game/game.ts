@@ -1,4 +1,5 @@
 import NoteWheel from './ui/wheel';
+import Sound from 'sounds';
 
 /**
  *  Create a new game
@@ -42,9 +43,14 @@ export default class Game extends NoteWheel {
    */
   private addHandlers(initial:boolean = false) : void {
     let {button} = this.dom;
+    let {hardMode} = this.settings;
+    let correctAnswer = 'b';
+
+    // Set octave for note (easy mode is only 1 octave, hard mode is 3)
+    let octave: number = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
     
     // Add click handler for central button
-    this.dom.button.addEventListener('click', (e: Event) : void => {
+    button.addEventListener('click', (e: Event) : void => {
       e.preventDefault();
 
       // Disable button to avoid multi-click conflicts
@@ -61,6 +67,9 @@ export default class Game extends NoteWheel {
         this.toggleSoundAnimation(false);
         button.disabled = false;
       }, 2000);
+
+      // Get frequency of note
+      new Sound(this.notes, correctAnswer, octave).play();
     });
   }
 

@@ -1,8 +1,9 @@
+import notes from './note_references';
+
 /**
  *  Set game settings
  * 
  */
-let notes = {};
 let settings = {
   nodes: 100,
   radius: 190,

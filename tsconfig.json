@@ -14,7 +14,8 @@
       "interfaces": ["game/interfaces/index"],
       "settings": ["game/settings/index"],
       "elements": ["game/util/element"],
-      "easing": ["game/util/easing"]
+      "easing": ["game/util/easing"],
+      "sounds": ["game/sound/index"]
     }
   }
 }
