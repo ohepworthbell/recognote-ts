@@ -51,7 +51,7 @@ export default class ScoreKeeper {
       this.topscore = this.score;
 
       // Check for new 'top streaks', highlight as appropriate
-      if(this.score === this.topscore) {
+      if(this.score > 0 && this.score === this.topscore) {
         this.dom.top.classList.add('game__score--streak');
       }
 
