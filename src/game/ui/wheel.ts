@@ -2,6 +2,7 @@ import {Element, Img} from 'elements';
 import {Settings, Dom, Coordinates} from 'interfaces';
 import defaults from 'settings';
 import fetchGroupedSoundNodes from './nodes/group';
+import SoundNode from './nodes/groupitem';
 
 /**
  *  Create wheel for interactions
@@ -14,8 +15,8 @@ export default class NoteWheel {
   wrapper: HTMLElement;
   settings: Settings;
   dom: Dom;
-  nodes: any[];
-  ctx: any;
+  nodes: SoundNode[];
+  ctx: CanvasRenderingContext2D;
 
   constructor(wrapper: string, settings?: object) {
     this.wrapper = document.getElementById(wrapper) as HTMLElement;

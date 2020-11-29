@@ -1,4 +1,5 @@
 import NoteWheel from './ui/wheel';
+import ScoreKeeper from './ui/scores/index';
 import Answer from './ui/answers/index';
 import Sound from 'sounds';
 
@@ -12,7 +13,7 @@ import Sound from 'sounds';
 export default class Game extends NoteWheel {
   notes: object;
   answers: any[];
-  scoreboard: any;
+  scoreboard: ScoreKeeper;
   sound: Sound;
 
   constructor(wrapper: string, notes?: object, settings?: object) {
@@ -25,7 +26,7 @@ export default class Game extends NoteWheel {
     this.answers = [];
 
     // Create scoreboard
-    this.scoreboard = {};
+    this.scoreboard = new (ScoreKeeper as any)(this.wrapper);
 
     // Establish new round
     this.newRound(true);
@@ -68,7 +69,7 @@ export default class Game extends NoteWheel {
     let answers: string[] = Object.keys(this.notes);
     
     // Get random 'correct' answer
-    this.scoreboard.answer = answers[Math.floor(Math.random() * answers.length)];
+    this.scoreboard.correct = answers[Math.floor(Math.random() * answers.length)];
   }
 
   /**
@@ -77,13 +78,13 @@ export default class Game extends NoteWheel {
    */
   private createNewSound() : void {
     let {hardMode} = this.settings;
-    let {answer} = this.scoreboard;
+    let {correct} = this.scoreboard;
 
     // Find correct octave (hard mode spans 3rd-6th octaves, easy mode is just 4th octave)
     let octave = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
 
     // Create new sound
-    this.sound = new Sound(this.notes, answer, octave);
+    this.sound = new Sound(this.notes, correct, octave);
   }
 
   /**
@@ -121,7 +122,7 @@ export default class Game extends NoteWheel {
         for (let button of this.answers) button.disabled = true;
 
         // Check current answer
-        // this.scoreboard.check(button.answer);
+        this.scoreboard.check(value);
 
         // Refresh buttons after 500ms (to allow for 'click' animations to complete)
         setTimeout(() => this.newRound(), 1500);

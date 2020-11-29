@@ -1,3 +1,5 @@
+import camelToKebab from './camel-kebab';
+
 /**
  *  Create an element, with params
  * 
@@ -11,7 +13,7 @@ export function Element(this: any, elementType: string, attributes?: object, con
 
   // Add properties (if they exist)
   if(attributes) for(let [key, value] of Object.entries(attributes)) {
-    this.element.setAttribute(key, String(value));
+    this.element.setAttribute(camelToKebab(key), String(value));
   }
 
   // Append content, if exists
@@ -37,7 +39,7 @@ export function Img(this: any, src: string, width?: number, height?: number, att
 
   // Add properties (if they exist)
   if(attributes) for(let [key, value] of Object.entries(attributes)) {
-    this.image.setAttribute(key, String(value));
+    this.image.setAttribute(camelToKebab(key), String(value));
   }
 
   // Return element
