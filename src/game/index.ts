@@ -16,7 +16,7 @@ export default class Game extends NoteWheel {
   scoreboard: ScoreKeeper;
   sound: Sound;
 
-  constructor(wrapper: string, notes?: object, settings?: object) {
+  constructor(wrapper: string, notes: object, settings?: object) {
     super(wrapper, settings);
 
     // Save notes for game
