@@ -1,10 +1,23 @@
 const path = require('path');
+const webpack = require('webpack');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ['./src/index.ts', './src/assets/scss/style.scss'],
-  plugins: [new miniCssExtractPlugin()],
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new miniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: '.'
+        }
+      ]
+    })
+  ],
   module: {
     rules: [
       {
@@ -23,8 +36,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'main.js'
+    path: path.resolve(__dirname, 'build')
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -35,5 +47,5 @@ module.exports = {
     compress: true,
     port: 9000
   },
-  watch: true
+  watch: false
 };

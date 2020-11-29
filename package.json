@@ -4,12 +4,14 @@
   "description": "A small, self-contained, HTML-JS web app for practicing note recognotion",
   "main": "src/index.ts",
   "scripts": {
-    "serve": "webpack-dev-server",
+    "serve": "webpack-dev-server --config webpack-dev.config.js",
+    "build": "webpack --config webpack-prod.config.js --mode production ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Oliver Hepworth-Bell",
   "license": "ISC",
   "devDependencies": {
+    "copy-webpack-plugin": "^6.3.2",
     "css-loader": "^5.0.1",
     "mini-css-extract-plugin": "^1.3.1",
     "node-sass": "^5.0.0",
