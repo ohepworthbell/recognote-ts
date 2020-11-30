@@ -20,7 +20,8 @@ export default function Answer(answer: string, angle: number, radius = 120, midp
     type: 'button',
     class: 'game__answer',
     style: `top: ${y}px; left: ${x}px`,
-    title: answerText
+    title: answerText,
+    ariaLabel: 'Answer button'
   }, answerText);
 
   // Return answer

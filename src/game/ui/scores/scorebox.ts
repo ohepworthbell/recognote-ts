@@ -14,7 +14,8 @@ export default function ScoreBox(content: number, position: string, text?: strin
   // Create wrapping box
   this.box = new (Element as any)('div', {
     class: `game__score game__score--${position}`,
-    ariaLabel: text
+    ariaLabel: text,
+    ariaLive: 'polite',
   }, [text, numberBox]);
 
   // Allow score to be changed
