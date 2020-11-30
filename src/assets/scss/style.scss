@@ -1,0 +1,23 @@
+@import 'reset';
+
+// Defaults
+:root {
+  --background: #293141;
+  --background-lighter: #374153;
+  --text: #fff;
+  --text-lighter: #9299a5;
+  --colour: #24c597;
+  --gold: #fccf0a;
+}
+
+// Body
+body {
+  font-family: 'Helvetica Neue', 'Open Sans', sans-serif;
+  font-size: 18px;
+  background: var(--background);
+  color: var(--text);
+}
+
+@import 'structure';
+@import 'game';
+@import 'toasts';

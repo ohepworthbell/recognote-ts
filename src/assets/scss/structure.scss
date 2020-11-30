@@ -1,0 +1,50 @@
+// App
+.app {
+  width: 94%;
+  max-width: 40em;
+  text-align: center;
+  margin: 0 auto;
+  padding: Max(3em, 5vh) 0;
+  overflow: hidden;
+}
+
+// Header
+.header {
+  &__logo {
+    display: block;
+    width: 6em;
+    height: auto;
+    margin: 0 auto 0.6em;
+  }
+
+  &__text {
+    font-weight: 100;
+    font-size: 1.7em;
+    margin: 0;
+    letter-spacing: 0.04em;
+  }
+
+  @media (min-width: 1000px), (orientation: landscape) {
+    position: fixed;
+    top: 1.8rem;
+    left: 1.8rem;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+      margin: 0 1em 0 0;
+      width: 4em;
+    }
+
+    &__text {
+      font-size: 1.3em;
+    }
+  }
+}
+
+.footer {
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  font-size: 0.89em;
+  color: var(--text-lighter);
+}
