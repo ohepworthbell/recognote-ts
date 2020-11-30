@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "webpack-dev-server --config webpack-dev.config.js",
     "build": "webpack --config webpack-prod.config.js --mode production ",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "moduleNameMapper": {
     "@(.*)$": "src/$1"
