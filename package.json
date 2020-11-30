@@ -1,6 +1,6 @@
 {
   "name": "recognote",
-  "version": "0.0.1-alpha",
+  "version": "1.0.0",
   "description": "A small, self-contained, HTML-JS web app for practicing note recognotion",
   "main": "src/index.ts",
   "scripts": {
