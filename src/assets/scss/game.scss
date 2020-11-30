@@ -2,9 +2,13 @@
 
 .game {
   position: relative;
-  margin: 3em auto;
+  margin: 2em auto;
   width: 90%;
   max-width: 35em;
+
+  @media (min-width: 700px) {
+    margin: 0 auto 2em;
+  }
 
   &__canvas {
     display: block;
@@ -103,7 +107,7 @@
 
     @media (min-width: 700px) {
       top: auto;
-      bottom: 2em;
+      bottom: 1.5rem;
       font-size: 0.6em;
     }
 
@@ -112,7 +116,7 @@
       left: 1.2em;
 
       @media (min-width: 700px) {
-        left: 2.2em;
+        left: 2rem;
       }
     }
 
@@ -121,7 +125,7 @@
       right: 1.2em;
 
       @media (min-width: 700px) {
-        right: 2.2em;
+        right: 2rem;
       }
     }
 

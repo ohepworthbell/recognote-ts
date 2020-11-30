@@ -4,7 +4,7 @@
   max-width: 40em;
   text-align: center;
   margin: 0 auto;
-  padding: Max(3em, 10vh) 0;
+  padding: Max(3em, 5vh) 0;
   overflow: hidden;
 }
 
@@ -12,15 +12,33 @@
 .header {
   &__logo {
     display: block;
-    width: 7em;
+    width: 6em;
     height: auto;
-    margin: 0 auto 0.7em;
+    margin: 0 auto 0.6em;
   }
 
   &__text {
     font-weight: 100;
-    font-size: 1.8em;
+    font-size: 1.7em;
     margin: 0;
+    letter-spacing: 0.04em;
+  }
+
+  @media (min-width: 1000px), (orientation: landscape) {
+    position: fixed;
+    top: 1.8rem;
+    left: 1.8rem;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+      margin: 0 1em 0 0;
+      width: 4em;
+    }
+
+    &__text {
+      font-size: 1.3em;
+    }
   }
 }
 
