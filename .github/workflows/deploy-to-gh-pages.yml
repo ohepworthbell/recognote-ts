@@ -1,0 +1,35 @@
+name: Build app
+
+on:
+  pull_request:
+    types: ['closed']
+    branches: main
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    timeout-minutes: 3
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build and prepare app for deployment
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          git subtree split --branch gh-pages --prefix build/
+          git checkout gh-pages
+          git push --set-upstream origin gh-pages
+
+        env:
+          CI: true
