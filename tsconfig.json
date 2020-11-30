@@ -18,7 +18,9 @@
       "settings": ["game/settings/index"],
       "elements": ["game/util/element"],
       "easing": ["game/util/easing"],
-      "sounds": ["game/sound/index"]
+      "util/*": ["game/util/*"],
+      "sounds": ["game/sound/index"],
+      "toasts": ["toasts/index"]
     }
   }
 }

@@ -1,4 +1,5 @@
 import ScoreBox from './scorebox';
+import addToast from 'toasts';
 
 /**
  *  Create new ScoreKeeper
@@ -55,7 +56,8 @@ export default class ScoreKeeper {
         this.dom.top.classList.add('game__score--streak');
       }
 
-      console.log(`Correct! The answer was ${this.correct}`)
+      // Show 'correct' toast
+      addToast('You are correct!', true);
 
       // Return
       return;
@@ -70,8 +72,8 @@ export default class ScoreKeeper {
     // Big vibration to indicate error
     if (window.navigator.vibrate) window.navigator.vibrate(200);
 
-    // Notify via an error
-    console.error(`Oops, wrong answer! The correct answer was ${this.correct}`);
+    // Show 'incorrect' toast
+    addToast(`Oops, wrong answer! The correct answer was '${this.correct.toUpperCase()}'`);
   }
 
   /**
