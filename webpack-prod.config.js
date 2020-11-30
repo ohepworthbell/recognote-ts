@@ -14,6 +14,10 @@ module.exports = {
         {
           from: 'public',
           to: '.'
+        },
+        {
+          from: 'favicon',
+          to: '.'
         }
       ]
     })
