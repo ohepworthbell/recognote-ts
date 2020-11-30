@@ -26,6 +26,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          
+          npm i
+          npm run build
 
           git subtree split --branch gh-pages --prefix build/
           git checkout gh-pages
