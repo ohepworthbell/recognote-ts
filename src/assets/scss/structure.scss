@@ -1,9 +1,11 @@
 // App
 .app {
-  margin: 0;
   padding: Max(3em, 5vh) 0;
   overflow: hidden;
   text-align: center;
+  margin: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 // Header
