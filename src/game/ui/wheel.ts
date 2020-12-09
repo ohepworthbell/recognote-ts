@@ -71,7 +71,7 @@ export default class NoteWheel {
     this.ctx = canvas.getContext('2d');
 
     // Create play button icon
-    const image = new (Img as any)('/img/volume.svg', 30, 30, {
+    const image = new (Img as any)('img/volume.svg', 30, 30, {
       title: 'Volume icon', 
       class: 'game__play-button__icon'
     });
