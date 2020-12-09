@@ -1,4 +1,5 @@
 import camelToKebab from './camel-kebab';
+import {GenericObject} from 'interfaces';
 
 /**
  *  Create an element, with params
@@ -7,12 +8,12 @@ import camelToKebab from './camel-kebab';
  *  @param {Object} attributes - attributes to apply to element
  *  @param {*} content - attributes to apply to element
  */
-export function Element(this: any, elementType: string, attributes?: object, content?: any) : HTMLElement {
+export function Element(this: any, elementType: string, attributes?: GenericObject, content?: any) : HTMLElement {
   // Create element
   this.element = document.createElement(elementType);
 
   // Add properties (if they exist)
-  if(attributes) for(let [key, value] of Object.entries(attributes)) {
+  if(attributes) for(const [key, value] of Object.entries(attributes)) {
     this.element.setAttribute(camelToKebab(key), String(value));
   }
 
@@ -30,7 +31,7 @@ export function Element(this: any, elementType: string, attributes?: object, con
  *  @param {Number} width - width of image
  *  @param {Number} height - height of image
  */
-export function Img(this: any, src: string, width?: number, height?: number, attributes?: object) : HTMLImageElement {
+export function Img(this: any, src: string, width?: number, height?: number, attributes?: GenericObject) : HTMLImageElement {
   // Create image
   this.image = new Image(width, height);
 
@@ -38,7 +39,7 @@ export function Img(this: any, src: string, width?: number, height?: number, att
   this.image.src = src;
 
   // Add properties (if they exist)
-  if(attributes) for(let [key, value] of Object.entries(attributes)) {
+  if(attributes) for(const [key, value] of Object.entries(attributes)) {
     this.image.setAttribute(camelToKebab(key), String(value));
   }
 

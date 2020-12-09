@@ -6,7 +6,7 @@ import {Element} from 'elements';
  */
 export default function ScoreBox(content: number, position: string, text?: string) : HTMLElement {
   // Create box for numbers
-  let numberBox = new (Element as any)('span', {
+  const numberBox = new (Element as any)('span', {
     class: `game__score__number`,
     role: 'none'
   }, String(content));

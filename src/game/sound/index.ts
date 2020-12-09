@@ -1,4 +1,5 @@
 import ocataveMultiplier from './ocatavemultiplier';
+import {Notes, GenericObject} from 'interfaces';
 
 /**
  *  Create new frequency from provided note
@@ -11,8 +12,8 @@ import ocataveMultiplier from './ocatavemultiplier';
 export default class Sound {
   private frequency: number;
 
-  constructor(notes: any, note: string, octave = 4) {
-    let frequency: number = notes[note].frequency;
+  constructor(notes: Notes, note: string, octave = 4) {
+    const frequency: number = (notes as GenericObject)[note].frequency;
 
     // Save frequency with correct multiplier
     this.frequency = ocataveMultiplier(frequency, octave);
@@ -22,12 +23,12 @@ export default class Sound {
    *  Play new sound
    * 
    */
-  play() {
+  play() : void {
     // Create new audio context
-    let context = new window.AudioContext();
+    const context = new window.AudioContext();
 
     // Create oscillator
-    let oscillator = context.createOscillator();
+    const oscillator = context.createOscillator();
 
     // Add common settings to oscillator, connect to destination
     oscillator.type = 'sine';

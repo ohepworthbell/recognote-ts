@@ -6,7 +6,7 @@
  */
 export default function camelToKebab(str: string) : string {
   // Test string
-  let camelCase: boolean = /[A-Z]/.test(str);
+  const camelCase: boolean = /[A-Z]/.test(str);
 
   // If not camelcase, just return the string
   if(!camelCase) return str;

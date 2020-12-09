@@ -76,10 +76,10 @@ export default class SoundNode {
     this.offset *= OFFSET_EASE_OUT;
 
     // Check if tween is active
-    let radius = this.radius + this.offset * this.ease;
+    const radius = this.radius + this.offset * this.ease;
 
     // Calculate coordinates
-    let coords = {
+    const coords = {
       x: radius * Math.cos(this.angle) + this.midPoint,
       y: radius * Math.sin(this.angle) + this.midPoint
     };
@@ -96,7 +96,7 @@ export default class SoundNode {
     this.direction *= -1;
 
     // Set random new tween between min/max values;
-    let tween = Math.max(Math.random() * MAX_TWEEN_VALUE, MIN_TWEEN_VALUE);
+    const tween = Math.max(Math.random() * MAX_TWEEN_VALUE, MIN_TWEEN_VALUE);
 
     // Save new tween
     this.tween = tween * this.direction;
