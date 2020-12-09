@@ -4,7 +4,7 @@ import {Settings} from 'interfaces';
  *  Default settings for new game
  * 
  */
-let settings: Settings = {
+const settings: Settings = {
   nodes: 30,
   canvasSize: 700,
   ringRadius: 190,
@@ -19,6 +19,6 @@ let settings: Settings = {
  *  Export settings as closure, for quick override
  * 
  */
-export default (userSettings: object) : Settings => {
+export default (userSettings : Settings) : Settings => {
   return {...settings, ...userSettings};
 }

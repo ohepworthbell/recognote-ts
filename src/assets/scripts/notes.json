@@ -1,36 +1,36 @@
 {
   "a":{
-    "frequency":"27.5",
+    "frequency":27.5,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "b":{
-    "frequency":"30.87",
+    "frequency":30.87,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "c":{
-    "frequency":"16.35",
+    "frequency":16.35,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "d":{
-    "frequency":"18.35",
+    "frequency":18.35,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "e":{
-    "frequency":"20.6",
+    "frequency":20.6,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "f":{
-    "frequency":"21.83",
+    "frequency":21.83,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   },
   "g":{
-    "frequency":"24.5",
+    "frequency":24.5,
     "notes":["flat","sharp"],
     "chords":["minor","major","major7"]
   }

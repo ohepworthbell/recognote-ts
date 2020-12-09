@@ -25,10 +25,10 @@ export default class ScoreKeeper {
    *  Construct DOM
    * 
    */
-  constructDom(wrapper: HTMLElement) {
+  constructDom(wrapper: HTMLElement) : void {
     // Create score boxes
-    let current = new (ScoreBox as any)(this.score, 'left', 'Current score');
-    let top = new (ScoreBox as any)(this.topscore, 'right', 'Top streak');
+    const current = new (ScoreBox as any)(this.score, 'left', 'Current score');
+    const top = new (ScoreBox as any)(this.topscore, 'right', 'Top streak');
 
     // Append elements to wrapper
     wrapper.append(current, top);
@@ -42,8 +42,8 @@ export default class ScoreKeeper {
    * 
    *  @param {String} answer 
    */
-  check(answer: string) {
-    let correct = answer.toUpperCase() === this.correct.toUpperCase();
+  check(answer: string) : void {
+    const correct = answer.toUpperCase() === this.correct.toUpperCase();
 
     // If correct, update scores
     if(correct) {
@@ -80,7 +80,7 @@ export default class ScoreKeeper {
    *  Get top score (persistent in localStorage)
    * 
    */
-  get topscore() {
+  get topscore() : number {
     return Number(localStorage.getItem('topScore') || 0);
   }
 
@@ -90,7 +90,7 @@ export default class ScoreKeeper {
    *  @param {Number} score new top score
    */
   set topscore(score: number) {
-    let highestStreak = Math.max(score, this.topscore);
+    const highestStreak = Math.max(score, this.topscore);
 
     // Save highest streak
     localStorage.setItem('topScore', String(highestStreak));

@@ -2,6 +2,7 @@ import NoteWheel from './ui/wheel';
 import ScoreKeeper from './ui/scores/index';
 import Answer from './ui/answers/index';
 import Sound from 'sounds';
+import {Settings, Notes, GenericObject} from 'interfaces';
 
 /**
  *  Create a new game
@@ -11,22 +12,22 @@ import Sound from 'sounds';
  *  @param {Object} settings
  */
 export default class Game extends NoteWheel {
-  notes: object;
+  notes: Notes;
   answers: HTMLElement[];
   scoreboard: ScoreKeeper;
   sound: Sound;
 
-  constructor(wrapper: string, notes: object, settings?: object) {
+  constructor(wrapper: string, notes: GenericObject, settings?: Settings) {
     super(wrapper, settings);
 
     // Save notes for game
-    this.notes = notes;
+    this.notes = notes as Notes;
 
     // Set empty object for answers
     this.answers = [];
 
     // Create scoreboard
-    this.scoreboard = new (ScoreKeeper as any)(this.wrapper);
+    this.scoreboard = new (ScoreKeeper as typeof ScoreKeeper)(this.wrapper);
 
     // Establish new round
     this.newRound(true);
@@ -37,7 +38,7 @@ export default class Game extends NoteWheel {
    * 
    *  @param {Boolean} firstLoad 
    */
-  private newRound(firstLoad:boolean = false) : void {
+  private newRound(firstLoad = false) : void {
     this.clearPreviousRounds();
     this.setCorrectAnswer();
     this.createNewSound();
@@ -66,7 +67,7 @@ export default class Game extends NoteWheel {
    * 
    */
   private setCorrectAnswer() : void {
-    let answers: string[] = Object.keys(this.notes);
+    const answers: string[] = Object.keys(this.notes);
     
     // Get random 'correct' answer
     this.scoreboard.correct = answers[Math.floor(Math.random() * answers.length)];
@@ -77,11 +78,11 @@ export default class Game extends NoteWheel {
    * 
    */
   private createNewSound() : void {
-    let {hardMode} = this.settings;
-    let {correct} = this.scoreboard;
+    const {hardMode} = this.settings;
+    const {correct} = this.scoreboard;
 
     // Find correct octave (hard mode spans 3rd-6th octaves, easy mode is just 4th octave)
-    let octave:number = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
+    const octave:number = hardMode ? Math.floor(3 + Math.random() * 3) : 4;
 
     // Create new sound
     this.sound = new Sound(this.notes, correct, octave);
@@ -92,11 +93,11 @@ export default class Game extends NoteWheel {
    * 
    */
   private addAnswerButtons() : void {
-    let answers: string[] = Object.keys(this.notes);
+    const answers: string[] = Object.keys(this.notes);
 
     // Get sizes from settings
-    let {canvasSize, noteRadius} = this.settings;
-    let canvasClientWidth: number = this.dom.canvas.clientWidth;
+    const {canvasSize, noteRadius} = this.settings;
+    const canvasClientWidth: number = this.dom.canvas.clientWidth;
 
     // Get size of segments
     const divisions: number = Math.PI * 2 / answers.length;
@@ -107,10 +108,10 @@ export default class Game extends NoteWheel {
     // Create new answers from above array
     answers.forEach((value: string, index: number) => {
       // Get angle (offset by 1 rad)
-      let angle: number = divisions * index - Math.PI / 2;
+      const angle: number = divisions * index - Math.PI / 2;
 
       // Create new answer
-      let answer: HTMLElement = new (Answer as any)(value, angle, radius, midpoint);
+      const answer: HTMLElement = new (Answer as any)(value, angle, radius, midpoint);
 
       // Add new answer to array
       this.answers.push(answer);
@@ -137,7 +138,7 @@ export default class Game extends NoteWheel {
    * 
    */
   private addSoundButtonListeners() : void {
-    let {button} = this.dom;
+    const {button} = this.dom;
     
     // Add click handler for 'play' button
     button.addEventListener('click', (e: Event) : void => {
@@ -168,7 +169,7 @@ export default class Game extends NoteWheel {
    * 
    *  @param {Boolean} toggle 
    */
-  private toggleSoundAnimation(toggle: boolean = false) : void {
-    for (let node of this.nodes) toggle ? node.start() : node.end();
+  private toggleSoundAnimation(toggle = false) : void {
+    for (const node of this.nodes) toggle ? node.start() : node.end();
   }
 }

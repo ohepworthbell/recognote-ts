@@ -9,26 +9,26 @@ import randomString from 'util/random-string';
  */
 export default function addToast(content: string, success = false) : void {
   // Create random ID
-  let uniqueId: string = `toast-${randomString()}`;
+  const uniqueId = `toast-${randomString()}`;
 
   // Create 'close' button for toast
-  let button: HTMLElement = new (Element as any)('button', {
+  const button: HTMLElement = new (Element as any)('button', {
     class: 'toasts__close',
     type: 'button',
     title: 'Close',
     ariaLabel: 'Close',
-    ariaAtomic: true,
+      ariaAtomic: true,
     ariaControls: uniqueId
   }, '×');
 
   // Create toast
-  let toast: HTMLElement = new (Element as any)('dialogue', {
+  const toast: HTMLElement = new (Element as any)('dialogue', {
     class: `toasts__modal toasts__modal--${success ? 'success' : 'error'}`,
     id: uniqueId
   }, [content, button]);
 
   // Auto-remove toast after 2 seconds
-  let timeout: any = setTimeout(() : void => {
+  const timeout: any = setTimeout(() : void => {
     toast.remove();
   }, 2000);
 

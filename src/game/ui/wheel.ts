@@ -18,7 +18,7 @@ export default class NoteWheel {
   nodes: SoundNode[];
   ctx: CanvasRenderingContext2D;
 
-  constructor(wrapper: string, settings?: object) {
+  constructor(wrapper: string, settings?: Settings) {
     this.wrapper = document.getElementById(wrapper) as HTMLElement;
     this.settings = defaults(settings);
 
@@ -46,7 +46,7 @@ export default class NoteWheel {
   private animate() : void {
     let draw: any;
 
-    (draw = () => {
+    (draw = () : void => {
       this.drawLine();
 
       window.requestAnimationFrame(draw);
@@ -58,10 +58,10 @@ export default class NoteWheel {
    * 
    */
   private createGameArea() : void {
-    let {canvasSize} = this.settings;
+    const {canvasSize} = this.settings;
 
     // Create canvas
-    let canvas = new (Element as any)('canvas', {
+    const canvas = new (Element as any)('canvas', {
       width: canvasSize,
       height: canvasSize,
       class: 'game__canvas'
@@ -71,13 +71,13 @@ export default class NoteWheel {
     this.ctx = canvas.getContext('2d');
 
     // Create play button icon
-    let image = new (Img as any)('/img/volume.svg', 30, 30, {
+    const image = new (Img as any)('/img/volume.svg', 30, 30, {
       title: 'Volume icon', 
       class: 'game__play-button__icon'
     });
 
     // Create button for playing sounds
-    let button = new (Element as any)('button', {
+    const button = new (Element as any)('button', {
       type: 'button',
       title: 'Play sound',
       class: 'game__play-button button',
@@ -97,11 +97,11 @@ export default class NoteWheel {
    * 
    */
   private addGameLineGradient() : void {
-    let {canvas} = this.dom;
-    let {ctx} = this;
+    const {canvas} = this.dom;
+    const {ctx} = this;
 
     // Create gradient
-    let gradient = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
+    const gradient = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
 
     // Set gradient colours
     gradient.addColorStop(0.3, '#3762d2');
@@ -118,22 +118,22 @@ export default class NoteWheel {
    * 
    */
   private drawLine() : void {
-    let {canvas} = this.dom;
-    let {ctx} = this;
+    const {canvas} = this.dom;
+    const {ctx} = this;
 
     // Fetch nodes
-    let nodes = this.nodes;
-    let nodeLength = nodes.length - 1;
+    const nodes = this.nodes;
+    const nodeLength = nodes.length - 1;
   
     // Clear context
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   
     // Move to initial position
-    let startCoords = nodes[0].coords;
-    let endCoords = nodes[nodeLength].coords;
+    const startCoords = nodes[0].coords;
+    const endCoords = nodes[nodeLength].coords;
   
     // Get offset for coords, to create smooth line at end loop
-    let offset: Coordinates = {
+    const offset: Coordinates = {
       x: (startCoords.x + endCoords.x) / 2,
       y: (startCoords.y + endCoords.y) / 2
     };
@@ -144,9 +144,9 @@ export default class NoteWheel {
   
     // Loop through points of circle and draw curved lines
     for (let i = 0; i < nodeLength; i++) {
-      let current = nodes[i].coords;
-      let next = nodes[i + 1].coords;
-      let midpoint = {
+      const current = nodes[i].coords;
+      const next = nodes[i + 1].coords;
+      const midpoint = {
         x: (current.x + next.x) / 2,
         y: (current.y + next.y) / 2
       };

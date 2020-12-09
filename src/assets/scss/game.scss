@@ -3,7 +3,7 @@
 .game {
   position: relative;
   margin: 2em auto;
-  width: 90%;
+  width: 100%;
   max-width: 35em;
 
   @media (min-width: 700px) {
@@ -96,7 +96,7 @@
 
   &__score {
     position: fixed;
-    top: 1em;
+    top: 1.5rem;
     text-align: center;
     pointer-events: none;
     color: var(--text-lighter);
@@ -113,20 +113,12 @@
 
     &--left {
       text-align: left;
-      left: 1.2em;
-
-      @media (min-width: 700px) {
-        left: 2rem;
-      }
+      left: 2rem;
     }
 
     &--right {
       text-align: right;
-      right: 1.2em;
-
-      @media (min-width: 700px) {
-        right: 2rem;
-      }
+      right: 2rem;
     }
 
     &__number {

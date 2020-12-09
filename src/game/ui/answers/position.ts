@@ -6,7 +6,7 @@ import {Coordinates} from 'interfaces';
  *  @param {Number} radius 
  *  @param {Number} midpoint 
  */
-let angletoCoord = (_radius: number, _midpoint: number) => {
+const angletoCoord = (_radius: number, _midpoint: number) => {
   return (_angle: number) : number => Number((_radius * _angle + _midpoint).toFixed(2));
 }
 
@@ -22,15 +22,12 @@ let angletoCoord = (_radius: number, _midpoint: number) => {
  *  @returns {Object} {x,y}
  */
 export default function Position(radius: number, angle: number, midpoint: number) : Coordinates {
-  // Force Number in arguments
-  for (let arg of arguments) arg = Number(arg);
-
   // Convert angle to coord
-  let pos = angletoCoord(radius, midpoint);
+  const pos = angletoCoord(radius, midpoint);
 
   // Get x/y position
-  let x: number = pos(Math.cos(angle));
-  let y: number = pos(Math.sin(angle));
+  const x: number = pos(Math.cos(angle));
+  const y: number = pos(Math.sin(angle));
 
   // Return
   return {x, y};

@@ -1,5 +1,4 @@
-import notes from './assets/scripts/notes.json';
-import settings from './assets/scripts/settings.json';
+import {notes, settings} from './assets/scripts/index';
 import Game from './game/index';
 
 /**

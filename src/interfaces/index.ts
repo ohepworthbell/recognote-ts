@@ -23,6 +23,36 @@ export type Settings = {
 }
 
 /**
+ *  Attributes object
+ * 
+ */
+export type GenericObject = { [key: string]: any };
+
+/**
+ *  Note interace
+ * 
+ */
+type Note = {
+  frequency: number,
+  notes: string[],
+  chords: string[]
+}
+
+/**
+ *  NoteWheel Notes interface
+ * 
+ */
+export type Notes = {
+  a: Note,
+  b: Note,
+  c: Note,
+  d: Note,
+  e: Note,
+  f: Note,
+  g: Note,
+}
+
+/**
  *  Coordinates
  * 
  */

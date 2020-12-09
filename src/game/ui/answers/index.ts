@@ -10,17 +10,18 @@ import Position from './position';
  *  @param {Number} midpoint
  */
 export default function Answer(answer: string, angle: number, radius = 120, midpoint = 0) : HTMLElement {
-  let answerText = answer.toUpperCase();
+  const answerText = answer.toUpperCase();
 
   // Get coordinates
-  let {x, y} = new (Position as any)(radius, angle, midpoint);
+  const {x, y} = new (Position as any)(radius, angle, midpoint);
 
   // Add button to dom
   this.button = new (Element as any)('button', {
     type: 'button',
     class: 'game__answer',
     style: `top: ${y}px; left: ${x}px`,
-    title: answerText
+    title: answerText,
+    ariaLabel: 'Answer button'
   }, answerText);
 
   // Return answer

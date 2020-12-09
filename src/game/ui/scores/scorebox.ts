@@ -6,7 +6,7 @@ import {Element} from 'elements';
  */
 export default function ScoreBox(content: number, position: string, text?: string) : HTMLElement {
   // Create box for numbers
-  let numberBox = new (Element as any)('span', {
+  const numberBox = new (Element as any)('span', {
     class: `game__score__number`,
     role: 'none'
   }, String(content));
@@ -14,7 +14,8 @@ export default function ScoreBox(content: number, position: string, text?: strin
   // Create wrapping box
   this.box = new (Element as any)('div', {
     class: `game__score game__score--${position}`,
-    ariaLabel: text
+    ariaLabel: text,
+    ariaLive: 'polite',
   }, [text, numberBox]);
 
   // Allow score to be changed
