@@ -26,13 +26,19 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git config pull.rebase true
+
+          git fetch --all
           
           npm i
           npm run build
 
+          git add build/ --force
+          git commit -m "deploy:GitHub Actions"
+
           git subtree split --branch gh-pages --prefix build/
           git checkout gh-pages
-          git push --set-upstream origin gh-pages
+          git push --force --set-upstream origin gh-pages
 
         env:
           CI: true
