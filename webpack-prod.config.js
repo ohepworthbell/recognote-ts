@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: ['./src/index.ts', './src/assets/scss/style.scss'],
   plugins: [
     new webpack.ProgressPlugin(),
@@ -54,11 +55,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
     plugins: [new TsconfigPathsPlugin()]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    compress: true,
-    port: 9000
   },
   watch: false
 };

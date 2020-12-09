@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: ['./src/index.ts', './src/assets/scss/style.scss'],
   plugins: [
     new miniCssExtractPlugin(),
@@ -37,8 +38,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
-    compress: true,
-    port: 9000
+    compress: true
   },
   watch: true
 };
